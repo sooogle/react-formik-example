@@ -6,6 +6,7 @@ import EmployeeStore from "../stores/EmployeeStore";
 class EmployeeUpdate extends Component {
   constructor(props) {
     super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       employee: { id: '', name: '', age: 0, organization: '', isRetired: false },
       loading: true,

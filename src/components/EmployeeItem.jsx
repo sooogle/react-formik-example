@@ -13,7 +13,7 @@ const EmployeeItem = (props) => (
     <td>{props.employee.age}</td>
     <td>{props.employee.organization}</td>
     <td>
-      <button className='btn btn-danger btn-sm' onClick={props.handleDelete}>
+      <button className='btn btn-danger btn-sm' onClick={() => props.onDelete(props.employee.id)}>
         削除
       </button>
     </td>

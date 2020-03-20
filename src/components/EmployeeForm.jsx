@@ -3,6 +3,11 @@ import { Formik, Form } from 'formik';
 import { Input, Select, Checkbox } from '../lib/form-helper';
 import PropTypes from 'prop-types';
 import * as Yup from 'yup';
+import { setLocale } from 'yup';
+import { localeJa } from '../lib/locale-ja';
+
+// エラーメッセージを日本語にカスタマイズ
+setLocale(localeJa);
 
 const EmployeeForm = (props) => (
   <Formik
@@ -10,11 +15,11 @@ const EmployeeForm = (props) => (
     enableReinitialize // このオプションがないとinitialValuesが変わった時に再レンダリングされない
     onSubmit={values => props.onSubmit(values)} // サブミット時のコールバック
     validationSchema={Yup.object({
-      id: Yup.string().required().label('従業員コード'),
-      name: Yup.string().required().label('氏名'),
-      age: Yup.number().required().label('年齢'),
+      id: Yup.string().required().length(5).label('従業員コード'),
+      name: Yup.string().required().max(10).label('氏名'),
+      age: Yup.number().required().min(18).label('年齢'),
       organization: Yup.string().required().label('組織'),
-    })} // バリデーションはYupというライブラリを利用
+    })}
   >
     {/* Formikコンポーネントのchildrenとしてフォームを定義 */}
     <Form>
