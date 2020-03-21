@@ -1,7 +1,8 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import EmployeeService from "../stores/EmployeeStore";
-import EmployeeItem from "../components/EmployeeItem";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import EmployeeService from '../stores/EmployeeStore';
+import EmployeeItem from '../components/EmployeeItem';
+import Overlay from '../components/Overlay';
 
 class EmployeeList extends Component {
   constructor(props) {
@@ -33,7 +34,8 @@ class EmployeeList extends Component {
   render() {
     return (
       <>
-        <table className="table table-striped">
+        <Overlay show={this.state.loading} />
+        <table className='table table-striped'>
           <thead>
             <tr>
               <th>従業員コード</th>
@@ -53,7 +55,7 @@ class EmployeeList extends Component {
             ))}
           </tbody>
         </table>
-        <Link to="/employee/new" className="btn btn-primary">
+        <Link to='/employee/new' className='btn btn-primary'>
           新規登録
         </Link>
       </>

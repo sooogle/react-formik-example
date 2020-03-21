@@ -3,11 +3,10 @@ import { Formik, Form } from 'formik';
 import { Input, Select, Checkbox } from '../lib/form-helper';
 import PropTypes from 'prop-types';
 import * as Yup from 'yup';
-import { setLocale } from 'yup';
 import { localeJa } from '../lib/locale-ja';
 
 // エラーメッセージを日本語にカスタマイズ
-setLocale(localeJa);
+Yup.setLocale(localeJa);
 
 const EmployeeForm = (props) => (
   <Formik

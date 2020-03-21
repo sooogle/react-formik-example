@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import EmployeeForm from "../components/EmployeeForm"
 import EmployeeStore from "../stores/EmployeeStore";
+import Overlay from '../components/Overlay';
 
 class EmployeeUpdate extends Component {
   constructor(props) {
@@ -28,7 +29,10 @@ class EmployeeUpdate extends Component {
 
   render() {
     return (
-      <EmployeeForm initialValues={this.state.employee} onSubmit={this.handleSubmit} />
+      <>
+        <Overlay show={this.state.loading} />
+        <EmployeeForm initialValues={this.state.employee} onSubmit={this.handleSubmit} />
+      </>
     );
   }
 
