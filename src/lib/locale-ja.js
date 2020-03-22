@@ -1,3 +1,4 @@
+ /* eslint-disable */
 export const localeJa = {
   mixed: {
     default: "${path}が不正です",

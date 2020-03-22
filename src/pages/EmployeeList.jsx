@@ -35,6 +35,11 @@ class EmployeeList extends Component {
     return (
       <>
         <Overlay show={this.state.loading} />
+        {this.props.location.state && this.props.location.state.flash && (
+          <div className={"alert alert-" + this.props.location.state.flash.level} role="alert">
+            {this.props.location.state.flash.message}
+          </div>
+        )}
         <table className='table table-striped'>
           <thead>
             <tr>

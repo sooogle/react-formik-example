@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import EmployeeForm from "../components/EmployeeForm";
 import EmployeeStore from "../stores/EmployeeStore"
 
@@ -7,20 +7,32 @@ class EmployeeCreate extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = { redirect: false };
   }
 
   async handleSubmit(values) {
     await EmployeeStore.create(values);
-    this.props.history.push("/");
+    this.setState({ redirect: true });
   }
 
   render() {
     const initialValues = { id: '', name: '', age: 0, organization: '', isRetired: false };
     return (
-      <EmployeeForm initialValues={initialValues} onSubmit={this.handleSubmit} />
+      <>
+        {this.state.redirect && (<Redirect to={{
+          pathname: '/',
+          state: {
+            flash: {
+              level: 'info',
+              message: '登録しました',
+            }
+          }
+        }} />)}
+        <EmployeeForm initialValues={initialValues} onSubmit={this.handleSubmit} />
+      </>
     );
   }
 
 }
 
-export default withRouter(EmployeeCreate);
+export default EmployeeCreate;
